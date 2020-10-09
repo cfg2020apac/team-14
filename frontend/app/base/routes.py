@@ -212,15 +212,26 @@ def volunteers_add():
     else:
         return render_template('volunteers_add.html', error=True)
 
-# POST
-@blueprint.route('/volunteers_edit/<string:id>', methods=['GET'])
-def volunteers_edit(id):
+@blueprint.route('/volunteers_edit/<string:email>', methods=['GET'])
+def volunteers_edit(email):
+    url = 'http://danieltan.org:8080/volunteers/find?email=' + email
+    res = requests.get(url)
+
+    # 200 means http ok
+    if res.status_code == 200:
+        print(res, res.json())
+        return render_template('volunteers_edit.html', data=res.json())
+    else:
+        return render_template('volunteers_edit.html', error=True)
+
+@blueprint.route('/volunteers_edit/<string:email>', methods=['POST'])
+def volunteers_edit_post(email):
     url = 'http://danieltan.org:8080/volunteers/update'
     res = requests.post(url, data=request.form)
 
     print(res)
     # 200 means http ok
     if res.status_code == 200:
-        return render_template('volunteers_add.html', success=True)
+        return render_template('volunteers_add.html')
     else:
-        return render_template('volunteers_add.html', error=True)
+        return render_template('volunteers_add.html')
