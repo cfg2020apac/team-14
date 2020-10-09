@@ -110,7 +110,7 @@ class Program(db.Model):
     host = db.Column(db.String(80), nullable=False)
     ratio = db.Column(db.Float, nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
-    program_format = db.Column(db.String(80), nullable=False)
+    venue = db.Column(db.String(80), nullable=False)
 
     def json(self):
         return {
@@ -122,7 +122,7 @@ class Program(db.Model):
             'host': self.host,
             'ratio': self.ratio,
             'capacity': self.capacity,
-            'program_format': self.program_format
+            'venue': self.venue
         }
 
 
@@ -264,16 +264,17 @@ def get_attendees_by_id():
 def sendmail():
     range1 = datetime.today() + timedelta(days=1)
     range2 = datetime.today() + timedelta(days=2)
-    programs = [(item.program_id, item.name, item.host)
+    programs = [(item.program_id, item.name, item.host, item.venue)
                 for item in Program.query.filter(Program.start_date.between(range1, range2)).all()]
     for program in programs:
         name = program[1]
         host = program[2]
+        venue = program[3]
         emails = program_attendees(program[0])['students']
         for email in emails:
             subject = "JA Program Reminder"
-            text = "This is a reminder that {} by {} will be happening tomorrow!".format(
-                name, host)
+            text = "This is a reminder that {} by {} will be happening tomorrow! Join us at {}.".format(
+                name, host, venue)
             emailer.sendMessage(email, subject, text)
 
 
