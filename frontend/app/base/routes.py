@@ -185,3 +185,16 @@ def add_program():
             
 
     return render_template('programs_add.html')
+
+@blueprint.route('/volunteers_view', methods=['GET'])
+def volunteers_view():
+    # column_names = ["age", "contact", "email", "first_name", "gender", "language", "last_name", "school"]
+    # df = pd.DataFrame(columns = column_names)
+    
+    response = requests.get("http://danieltan.org:8080/volunteers/all")
+    
+    data = response.json()
+    for k in data:
+        data = data[k]
+
+    return render_template('volunteers_view.html', data=data)
