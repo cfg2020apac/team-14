@@ -147,15 +147,6 @@ def add_student():
 
     return render_template('students_view.html')
 
-@blueprint.route('/programs_view')
-def return_programs():
-    response = requests.get("http://danieltan.org:8080/programs/all")
-    data = response.json()
-    for k in data:
-        data = data[k]
-
-    return render_template('students_view.html')
-
 
 @blueprint.route('/programs_view')
 def return_programs():
