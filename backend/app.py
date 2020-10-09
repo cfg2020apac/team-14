@@ -103,7 +103,32 @@ class Program(db.Model):
             'capacity': self.capacity,
             'program_format': self.program_format
         }
-
+        
+class StudentLink(db.Model):
+    __tablename__ = "student_link"
+    link_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    student_id = db.Column(db.Integer, ForeignKey("student.student_id"), nullable=False)
+    program_id = db.Column(db.Integer, ForeignKey("program.program_id"), nullable=False)
+    
+    def json(self):
+        return {
+            'link_id': self.link_id,
+            "student_id": self.student_id,
+            "program_id": self.program_id
+        }
+        
+class VolunteerLink(db.Model):
+    __tablename__ = "volunteer_link"
+    link_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    volunteer_id = db.Column(db.Integer, ForeignKey("volunteer.volunteer_id"), nullable=False)
+    program_id = db.Column(db.Integer, ForeignKey("program.program_id"), nullable=False)
+    
+    def json(self):
+        return {
+            'link_id': self.link_id,
+            "volunteer_id": self.volunteer_id,
+            "program_id": self.program_id
+        }
 
 engine = create_engine(dbURL)
 if not database_exists(engine.url):
