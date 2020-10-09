@@ -161,6 +161,13 @@ def add_student():
 
     return render_template('students_view.html')
 
+@blueprint.route('/students_edit/<email>')
+def find_student(email):
+    response = requests.get("http://danieltan.org:8080/students/find?student_email={email}")
+    print(response.json())
+
+    return render_template('students_view.html')
+
 
 @blueprint.route('/programs_view')
 def return_programs():
