@@ -16,6 +16,6 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - dockerdb=mysql+mysqlconnector://root@db:3306/ja
+      DOCKERDB: 'mysql+mysqlconnector://root@db:3306/ja'
 volumes:
   db:

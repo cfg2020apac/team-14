@@ -9,7 +9,7 @@ import os
 
 app = Flask(__name__)
 try:
-    dbURL = os.getenv(dockerdb)
+    dbURL = os.getenv('DOCKERDB')
 except:
     dbURL = 'mysql+mysqlconnector://root@localhost:3306/ja'
 app.config['SQLALCHEMY_DATABASE_URI'] = dbURL
