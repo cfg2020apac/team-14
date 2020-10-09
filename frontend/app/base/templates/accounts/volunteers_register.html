@@ -23,9 +23,9 @@
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
                 <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                <select class="form-control" id="input-type">
-                  <option value="">Student</option>
-                  <option value="">Working Professional</option>
+                <select class="form-control" name="category" id="input-type">
+                  <option value="student">Student</option>
+                  <option value="business">Working Professional</option>
                 </select>
               </div>
             </div>
@@ -38,7 +38,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="First name" type="text">
+                    <input class="form-control" placeholder="First name" name="first_name" type="text">
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Last name" type="text">
+                    <input class="form-control" placeholder="Last name" name="last_name" type="text">
                   </div>
                 </div>
               </div>
@@ -61,14 +61,17 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" placeholder="Email" type="email">
+                <input class="form-control" placeholder="Email" name="email" type="email">
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-lg-6">
-              </div>
-              <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Contact number</label>
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="+852 1234 5678" name="contact_no" type="tel">
               </div>
             </div>
 
@@ -80,7 +83,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Age" type="number">
+                    <input class="form-control" placeholder="Age" name="age" type="number">
                   </div>
                 </div>
               </div>
@@ -92,9 +95,9 @@
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
                     <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                    <select class="form-control" id="input-type">
-                      <option value="M" selected>Male</option>
-                      <option value="F">Female</option>
+                    <select class="form-control" name="gender" id="input-type">
+                      <option value="male" selected>Male</option>
+                      <option value="female">Female</option>
                     </select>
                   </div>
                 </div>
@@ -109,7 +112,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Company" type="text">
+                    <input class="form-control" placeholder="Company" name="company" type="text">
                   </div>
                 </div>
               </div>
@@ -120,9 +123,18 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Position" type="text">
+                    <input class="form-control" placeholder="Position" name="position" type="text">
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Years of working experience</label>
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="e.g. 5" name="years_of_working_experience" type="number">
               </div>
             </div>
             <div class="form-group">
@@ -131,10 +143,10 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
-                <input class="form-control" placeholder="Spoken languages" type="text">
+                <input class="form-control" placeholder="Spoken languages" name="language" type="text">
               </div>
             </div>
-            
+
             <div class="form-group">
               <label class="form-control-label">Educational level</label>
               <div class="input-group input-group-merge input-group-alternative mb-3">
@@ -142,10 +154,12 @@
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
                 <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                <select class="form-control" id="input-type">
+                <select class="form-control" name="education_level" id="input-type">
                   <option value="Primary" selected>Primary</option>
                   <option value="Secondary">Secondary</option>
                   <option value="Tertiary">Tertiary</option>
+                  <option value="Bachelor's">Bachelor's Degree</option>
+                  <option value="Masters">Masters Degree</option>
                 </select>
               </div>
             </div>
@@ -158,7 +172,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Preferred timing" type="text">
+                    <input class="form-control" placeholder="e.g. AM or PM" name="preferred_timing" type="text">
                   </div>
                 </div>
               </div>
@@ -169,7 +183,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Can be updated later" type="text">
+                    <select class="form-control" name="preferred_student_group" id="input-type">
+                      <option value="primary" selected>Primary</option>
+                      <option value="secondary">Secondary</option>
+                      <option value="tertiary">Tertiary</option>
+                    </select>
                   </div>
                 </div>
               </div>
