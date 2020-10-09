@@ -17,6 +17,19 @@
             <h2>Volunteers registration</h2>
             <form role="form">
               <div class="form-group">
+                <label class="form-control-label">Are you a...</label>
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
+                  <select class="form-control" id="input-type">
+                    <option value="">Student</option>
+                    <option value="">Working Professional</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
                 <div class="input-group input-group-merge input-group-alternative mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
@@ -46,6 +59,78 @@
                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                   </div>
                   <input class="form-control" placeholder="Password" type="password">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Age" type="number">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
+                  <select class="form-control" id="input-type">
+                    <option value="M" selected>Male</option>
+                    <option value="F">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Language" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Company" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Position" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
+                  <select class="form-control" id="input-type">
+                    <option value="Primary" selected>Primary</option>
+                    <option value="Secondary">Secondary</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Preferred timing" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Preferred student group" type="text">
                 </div>
               </div>
               <div class="text-center">
