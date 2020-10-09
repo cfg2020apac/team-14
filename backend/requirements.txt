@@ -6,3 +6,4 @@ sqlalchemy_utils
 python-dateutil
 mysql-connector-python
 schedule
+requests
