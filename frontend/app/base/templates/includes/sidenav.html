@@ -30,6 +30,12 @@
               <span class="nav-link-text">Programs</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('base_blueprint.logout') }}">
+              <i class="ni ni-circle-08 user-run"></i>
+              <span class="nav-link-text">Logout</span>
+            </a>
+          </li>
           <!-- TODO: remove once done -->
           <!-- <li class="nav-item">
             <a class="nav-link {% if 'index' in segment %} active {% endif %}" 

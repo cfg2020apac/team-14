@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
-
+from dotenv import load_dotenv
+load_dotenv()
 import requests
-import os 
+import os
 from flask import jsonify, render_template, redirect, request, url_for
 from flask_login import (
     current_user,
@@ -87,12 +88,26 @@ def register():
     else:
         return render_template( 'accounts/register.html', form=create_account_form)
 
-@blueprint.route('/register/volunteers', methods=['GET', 'POST'])
+# GET
+@blueprint.route('/register/volunteers', methods=['GET'])
 def register_volunteers():
     login_form = LoginForm(request.form)
     create_account_form = CreateAccountForm(request.form)
     
-    return render_template( 'accounts/volunteers_register.html', form=create_account_form)
+    return render_template('accounts/volunteers_register.html', form=create_account_form)
+
+# POST
+@blueprint.route('/register/volunteers', methods=['POST'])
+def register_volunteers_post():
+    url = 'http://danieltan.org:8080/volunteers/update'
+    res = requests.post(url, data=request.form)
+
+    print(res)
+    # 200 means http ok
+    if res.status_code == 200:
+        return render_template('accounts/volunteers_register_success.html') # change to success
+    else:
+        return render_template('accounts/volunteers_register.html', error=True)
 
 @blueprint.route('/logout')
 def logout():
