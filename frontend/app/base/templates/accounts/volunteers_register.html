@@ -7,143 +7,194 @@
 
 {% block content %}
 
-  <!-- Page content -->
-  <div class="container mt--8 pb-5">
-    <!-- Table -->
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-8">
-        <div class="card bg-secondary border-0">
-          <div class="card-body px-lg-5 py-lg-5">
-            <h2>Volunteers registration</h2>
-            <form role="form">
-              <div class="form-group">
-                <label class="form-control-label">Are you a...</label>
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary border-0">
+        <div class="card-body px-lg-5 py-lg-5">
+          <h2>Volunteers registration</h2>
+          <form role="form">
+            <div class="form-group">
+              <label class="form-control-label">Are you a...</label>
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
+                <select class="form-control" id="input-type">
+                  <option value="">Student</option>
+                  <option value="">Working Professional</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">First name</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="First name" type="text">
                   </div>
-                  <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                  <select class="form-control" id="input-type">
-                    <option value="">Student</option>
-                    <option value="">Working Professional</option>
-                  </select>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Last name</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Last name" type="text">
                   </div>
-                  <input class="form-control" placeholder="First name" type="text">
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-control-label">Email</label>
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Email" type="email">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-control-label">Password</label>
+              <div class="input-group input-group-merge input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input class="form-control" placeholder="Password" type="password">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+              </div>
+              <div class="col-lg-6">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Age</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Age" type="number">
                   </div>
-                  <input class="form-control" placeholder="Last name" type="text">
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Gender</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
+                    <select class="form-control" id="input-type">
+                      <option value="M" selected>Male</option>
+                      <option value="F">Female</option>
+                    </select>
                   </div>
-                  <input class="form-control" placeholder="Email" type="email">
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Company</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Company" type="text">
                   </div>
-                  <input class="form-control" placeholder="Password" type="password">
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Position</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Position" type="text">
                   </div>
-                  <input class="form-control" placeholder="Age" type="number">
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">Spoken languages</label>
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="Spoken languages" type="text">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-control-label">Educational level</label>
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
+                <select class="form-control" id="input-type">
+                  <option value="Primary" selected>Primary</option>
+                  <option value="Secondary">Secondary</option>
+                  <option value="Tertiary">Tertiary</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Preferred timing</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Preferred timing" type="text">
                   </div>
-                  <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                  <select class="form-control" id="input-type">
-                    <option value="M" selected>Male</option>
-                    <option value="F">Female</option>
-                  </select>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Preferred student group</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Can be updated later" type="text">
                   </div>
-                  <input class="form-control" placeholder="Language" type="text">
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                  </div>
-                  <input class="form-control" placeholder="Company" type="text">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                  </div>
-                  <input class="form-control" placeholder="Position" type="text">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                  </div>
-                  <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                  <select class="form-control" id="input-type">
-                    <option value="Primary" selected>Primary</option>
-                    <option value="Secondary">Secondary</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                  </div>
-                  <input class="form-control" placeholder="Preferred timing" type="text">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-merge input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                  </div>
-                  <input class="form-control" placeholder="Preferred student group" type="text">
-                </div>
-              </div>
-              <div class="text-center">
-                <button type="button" class="btn btn-primary mt-4">Sign me up!</button>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary mt-4">Sign me up!</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 {% endblock content %}
 
-<!-- Specific JS goes HERE --> 
+<!-- Specific JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}
