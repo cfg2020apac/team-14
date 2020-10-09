@@ -8,9 +8,8 @@ import json
 import os
 
 app = Flask(__name__)
-try:
-    dbURL = os.getenv('DOCKERDB')
-except:
+dbURL = os.getenv('DOCKERDB')
+if not dbURL:  # for local testing
     dbURL = 'mysql+mysqlconnector://root@localhost:3306/ja'
 app.config['SQLALCHEMY_DATABASE_URI'] = dbURL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
