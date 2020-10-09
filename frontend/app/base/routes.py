@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
-
+from dotenv import load_dotenv
+load_dotenv()
 import requests
-import os 
+import os
 from flask import jsonify, render_template, redirect, request, url_for
 from flask_login import (
     current_user,
