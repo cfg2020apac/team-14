@@ -4,8 +4,6 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import *
 import json
 import os
 
@@ -58,12 +56,6 @@ class Student(db.Model):
             'gender': self.gender,
             'language': self.language
         }
-
-@event.listens_for(Student.__table__, 'after_create')
-def create_students(*args, **kwargs):
-    db.session.add(Student(email='abc@xyz.gmail.com', first_name='test first name', last_name="test last name", contact_no="12345678", school="HKU", age=21, gender="Male",language="Cantonese"))
-    db.session.add(Student(email='bla@bla.yahoo.com', first_name='test 1', last_name="test 2", contact_no="12345678", school="CUHK", age=23, gender="Male", language="Cantonese, English"))
-    db.session.commit()
 
 
 class Volunteer(db.Model):
@@ -130,24 +122,24 @@ class Program(db.Model):
 
 class StudentLink(db.Model):
     __tablename__ = "student_link"
-    student_id = db.Column(db.Integer, ForeignKey(
-        "student.student_id"), primary_key=True, nullable=False)
-    program_id = db.Column(db.Integer, ForeignKey(
+    program_id = db.Column(db.Integer, db.ForeignKey(
         "program.program_id"), primary_key=True, nullable=False)
+    student_email = db.Column(db.String(80), db.ForeignKey(
+        "student.email"), primary_key=True, nullable=False)
 
     def json(self):
         return {
-            "student_id": self.student_id,
-            "program_id": self.program_id
+            "program_id": self.program_id,
+            "student_email": self.student_email
         }
 
 
 class VolunteerLink(db.Model):
     __tablename__ = "volunteer_link"
-    volunteer_id = db.Column(db.Integer, ForeignKey(
-        "volunteer.volunteer_id"), primary_key=True, nullable=False)
-    program_id = db.Column(db.Integer, ForeignKey(
+    program_id = db.Column(db.Integer, db.ForeignKey(
         "program.program_id"), primary_key=True, nullable=False)
+    volunteer_email = db.Column(db.String(80), db.ForeignKey(
+        "volunteer.email"), primary_key=True, nullable=False)
 
     def json(self):
         return {
