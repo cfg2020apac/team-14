@@ -40,7 +40,7 @@ def login():
         if user and verify_pass( password, user.password):
 
             login_user(user)
-            return redirect(url_for('base_blueprint.login   '))
+            return redirect(url_for('base_blueprint.login'))
 
         # Something (user or pass) is not ok
         return render_template( 'accounts/login.html', msg='Wrong user or password', form=login_form)
@@ -143,9 +143,6 @@ def internal_error(error):
 ### STRIKES TO RETURN DATA ###
 @blueprint.route('/students_view')
 def return_students():
-    # column_names = ["age", "contact", "email", "first_name", "gender", "language", "last_name", "school"]
-    # df = pd.DataFrame(columns = column_names)
-    
     response = requests.get("http://danieltan.org:8080/students/all")
     
     data = response.json()
@@ -154,12 +151,13 @@ def return_students():
 
     return render_template('students_view.html', data=data)
 
-@blueprint.route('/students_add')
+@blueprint.route('/students_add', methods=["POST"])
 def add_student():
-    response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
-    print(response.json())
+    if request.method == "POST":
+        url = 'http://danieltan.org:8080/students/update'
+        res = requests.post(url, data=request.form)
 
-    return render_template('students_view.html')
+    return render_template('student_view.html', error=True)
 
 @blueprint.route('/students_edit/<email>')
 def find_student(email):
@@ -167,7 +165,6 @@ def find_student(email):
     print(response.json())
 
     return render_template('students_view.html')
-
 
 @blueprint.route('/programs_view')
 def return_programs():
