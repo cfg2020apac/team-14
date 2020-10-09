@@ -1,0 +1,142 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Add Students {% endblock title %}
+
+{% block content %}
+
+<div class="header pb-6 d-flex align-items-center" 
+     style="min-height: 200px; background-image: url(/static/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-default opacity-8"></span>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Edit volunteer</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-category">Category</label>
+                    <input type="text" id="input-first-name" class="form-control" placeholder="Category" value="Business">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">First Name</label>
+                    <input type="text" id="input-last-name" class="form-control" placeholder="First Name" value="Jesse">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Last Name</label>
+                    <input type="email" id="input-email" class="form-control" placeholder="Last Name" value="Owens">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-contact-number">Contact number</label>
+                    <input type="tel" id="input-contact-number" class="form-control" placeholder="+852 1234 5678">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Email</label>
+                    <input type="text" id="input-school" class="form-control" placeholder="Email">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-age">Age</label>
+                    <input type="number" id="input-age" class="form-control" placeholder="16">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-gender">Gender</label>
+                    <input type="text" id="input-language" class="form-control" placeholder="Male">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-language">Language</label>
+                      <input type="text" id="input-language" class="form-control" placeholder="Mandarin">
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-company">Company</label>
+                    <input type="text" id="input-language" class="form-control" placeholder="Company">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-position">Position</label>
+                      <input type="text" id="input-language" class="form-control" placeholder="Position">
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-education">Education</label>
+                    <input type="text" id="input-language" class="form-control" placeholder="Education">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-experience">Experience</label>
+                      <input type="text" id="input-language" class="form-control" placeholder="Experience">
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-timing">Preferred Timing</label>
+                    <input type="text" id="input-language" class="form-control" placeholder="Preferred Timing">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-student-group">Preferred Student Group</label>
+                      <input type="text" id="input-language" class="form-control" placeholder="Preferred Student Group">
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="pl-lg-4">
+              <button class="btn btn-success">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "includes/footer.html" %}
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
