@@ -9,11 +9,12 @@ from flask_login import (
     login_user,
     logout_user
 )
-
+import pandas as pd
 from app import db, login_manager
 from app.base import blueprint
 from app.base.forms import LoginForm, CreateAccountForm
 from app.base.models import User
+import json
 
 from app.base.util import verify_pass
 
@@ -39,7 +40,7 @@ def login():
         if user and verify_pass( password, user.password):
 
             login_user(user)
-            return redirect(url_for('base_blueprint.login'))
+            return redirect(url_for('base_blueprint.login   '))
 
         # Something (user or pass) is not ok
         return render_template( 'accounts/login.html', msg='Wrong user or password', form=login_form)
@@ -128,16 +129,29 @@ def internal_error(error):
 ### STRIKES TO RETURN DATA ###
 @blueprint.route('/students_view')
 def return_students():
-    response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
-    print(response.json())
+    # column_names = ["age", "contact", "email", "first_name", "gender", "language", "last_name", "school"]
+    # df = pd.DataFrame(columns = column_names)
+    
+    response = requests.get("http://danieltan.org:8080/students/all")
+    
+    data = response.json()
+    for k in data:
+        data = data[k]
 
-
-    return render_template('students_view.html')
+    return render_template('students_view.html', data=data)
 
 @blueprint.route('/students_add')
 def add_student():
     response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
     print(response.json())
 
-
     return render_template('students_view.html')
+
+@blueprint.route('/programs_view')
+def return_programs():
+    response = requests.get("http://danieltan.org:8080/programs/all")
+    data = response.json()
+    for k in data:
+        data = data[k]
+
+    return render_template('programs_view.html', data=data)

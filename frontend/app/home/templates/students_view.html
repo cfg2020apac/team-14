@@ -52,27 +52,28 @@
               </thead>
               <tbody class="list">
                 <!-- TODO: pull from api -->
+                {%- for row in data -%}
                 <tr>
                   <th scope="row">
-                    John
+                    {{ row.first_name }}
                   </th>
                   <td>
-                    Doe
+                    {{ row.last_name }} 
                   </td>
                   <td>
-                    8123 4567
+                    {{ row.contact_no }} 
                   </td>
                   <td>
-                    School name
+                    {{ row.email }} 
                   </td>
                   <td>
-                    16
+                    {{ row.school }} 
                   </td>
                   <td>
-                    Female
+                    {{ row.age }} 
                   </td>
                   <td>
-                    English, Mandarin, Cantonese
+                    {{ row.language }} 
                   </td>
                   <td class="text-right">
                     <div class="dropdown">
@@ -87,6 +88,8 @@
                     </div>
                   </td>
                 </tr>
+                {%- endfor %}
+
               </tbody>
             </table>
           </div>
