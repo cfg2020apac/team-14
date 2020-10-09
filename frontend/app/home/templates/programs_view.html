@@ -45,38 +45,38 @@
                   <th scope="col" class="sort">Start Date</th>
                   <th scope="col" class="sort">End Date</th>
                   <th scope="col" class="sort">Host</th>
+                  <th scope="col">Ratio</th>
                   <th scope="col">Capacity</th>
-                  <th scope="col">Language</th>
                   <th scope="col">Program Format</th>
                   <th scope="col"></th> <!-- for buttons -->
                 </tr>
               </thead>
               <tbody class="list">
-                <!-- TODO: pull from api -->
+              {% for el in data %}
                 <tr>
                   <th scope="row">
-                    Secondary
+                    {{el.program_type}}
                   </th>
                   <td>
-                    JA Finance for Future
+                    {{el.name}}
                   </td>
                   <td>
-                    9 Oct 20
+                    {{el.start_date}}
                   </td>
                   <td>
-                    9 Dec 20
+                    {{el.end_date}}
                   </td>
                   <td>
-                    host name
+                    {{el.host}}
                   </td>
                   <td>
-                    90
+                    {{el.ratio}}
                   </td>
                   <td>
-                    English, Mandarin, Cantonese
+                    {{el.capacity}}
                   </td>
                   <td>
-                    Online
+                    {{el.program_format}}
                   </td>
                   <td class="text-right">
                     <div class="dropdown">
@@ -90,6 +90,7 @@
                     </div>
                   </td>
                 </tr>
+              {% endfor %}
               </tbody>
             </table>
           </div>
