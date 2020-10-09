@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
+from dateutil import parser
 import json
 import os
 
@@ -99,8 +100,8 @@ class Program(db.Model):
     program_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     program_type = db.Column(db.String(80), nullable=False)
     name = db.Column(db.String(80), nullable=False)
-    start_date = db.Column(db.String(80), nullable=False)
-    end_date = db.Column(db.String(80), nullable=False)
+    start_date = db.Column(db.Time, nullable=False)
+    end_date = db.Column(db.Time, nullable=False)
     host = db.Column(db.String(80), nullable=False)
     ratio = db.Column(db.Float, nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
@@ -241,6 +242,10 @@ def get_program_by_id():
 @app.route("/programs/update", methods=['POST'])
 def new_program():
     data = request.form.to_dict()
+    start_date = parser.parse(request.args.get('start_date'))
+    end_date = parser.parse(request.args.get('end_date'))
+    data['start_date'] = start_date
+    data['end_date'] = end_date
     db.session.merge(Program(**data))
     db.session.commit()
     return "OK", 200
