@@ -5,3 +5,4 @@ flask-bcrypt
 sqlalchemy_utils
 python-dateutil
 mysql-connector-python
+schedule

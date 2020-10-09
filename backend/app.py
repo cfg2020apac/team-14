@@ -7,6 +7,11 @@ from sqlalchemy_utils import database_exists, create_database
 from dateutil import parser
 import json
 import os
+import threading
+import time
+from datetime import datetime, timedelta
+import schedule
+import emailer
 
 app = Flask(__name__)
 dbURL = os.getenv('DOCKERDB')
@@ -100,8 +105,8 @@ class Program(db.Model):
     program_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     program_type = db.Column(db.String(80), nullable=False)
     name = db.Column(db.String(80), nullable=False)
-    start_date = db.Column(db.Time, nullable=False)
-    end_date = db.Column(db.Time, nullable=False)
+    start_date = db.Column(db.DateTime, nullable=False)
+    end_date = db.Column(db.DateTime, nullable=False)
     host = db.Column(db.String(80), nullable=False)
     ratio = db.Column(db.Float, nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
@@ -185,8 +190,8 @@ def get_all_students():
 
 @app.route("/students/find", methods=['GET'])
 def get_student_by_email():
-    student_email = request.args.get('student_email')
-    return Student.query.filter_by(student_email=student_email).first().json()
+    email = request.args.get('email')
+    return Student.query.filter_by(email=email).first().json()
 
 
 @app.route("/students/update", methods=['POST'])
@@ -204,8 +209,8 @@ def get_all_volunteers():
 
 @app.route("/volunteers/find", methods=['GET'])
 def get_volunteer_by_email():
-    volunteer_email = request.args.get('volunteer_email')
-    return Volunteer.query.filter_by(volunteer_email=volunteer_email).first().json()
+    email = request.args.get('email')
+    return Volunteer.query.filter_by(email=email).first().json()
 
 
 @app.route("/volunteers/update", methods=['POST'])
@@ -230,8 +235,8 @@ def get_program_by_id():
 @app.route("/programs/update", methods=['POST'])
 def new_program():
     data = request.form.to_dict()
-    start_date = parser.parse(request.args.get('start_date'))
-    end_date = parser.parse(request.args.get('end_date'))
+    start_date = parser.parse(data['start_date'])
+    end_date = parser.parse(data['end_date'])
     data['start_date'] = start_date
     data['end_date'] = end_date
     db.session.merge(Program(**data))
@@ -239,12 +244,10 @@ def new_program():
     return "OK", 200
 
 
-@app.route("/programs/attendees", methods=['GET'])
-def get_attendees_by_id():
-    program_id = request.args.get('program_id')
-    students = [student.json() for student in StudentLink.query.filter_by(
+def program_attendees(program_id):
+    students = [item.student_email for item in StudentLink.query.filter_by(
         program_id=program_id).all()]
-    volunteers = [volunteer.json() for volunteer in VolunteerLink.query.filter_by(
+    volunteers = [item.volunteer_email for item in VolunteerLink.query.filter_by(
         program_id=program_id).all()]
     return {
         'students': students,
@@ -252,5 +255,36 @@ def get_attendees_by_id():
     }
 
 
+@app.route("/programs/attendees", methods=['GET'])
+def get_attendees_by_id():
+    program_id = request.args.get('program_id')
+    return program_attendees(program_id)
+
+
+def sendmail():
+    range1 = datetime.today() + timedelta(days=1)
+    range2 = datetime.today() + timedelta(days=2)
+    programs = [(item.program_id, item.name, item.host)
+                for item in Program.query.filter(Program.start_date.between(range1, range2)).all()]
+    for program in programs:
+        name = program[1]
+        host = program[2]
+        emails = program_attendees(program[0])['students']
+        for email in emails:
+            subject = "JA Program Reminder"
+            text = "This is a reminder that {} by {} will be happening tomorrow!".format(
+                name, host)
+
+
+def scheduler():
+    sendmail()
+    schedule.every().day.at("00:00").do(sendmail)
+    while True:
+        schedule.run_pending()
+        time.sleep(30)
+
+
 if __name__ == '__main__':
+    thread = threading.Thread(target=scheduler, daemon=True)
+    thread.start()
     app.run(host='0.0.0.0', port=8080, threaded=True)
