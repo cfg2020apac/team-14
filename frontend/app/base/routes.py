@@ -153,19 +153,18 @@ def return_students():
 
 @blueprint.route('/students_add', methods=["POST"])
 def add_student():
-<<<<<<< HEAD
     if request.method == "POST":
         url = 'http://danieltan.org:8080/students/update'
         res = requests.post(url, data=request.form)
 
     return render_template('student_view.html', error=True)
-=======
-    response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
+
+@blueprint.route('/students_edit/<email>')
+def find_student(email):
+    response = requests.get("http://danieltan.org:8080/students/find?student_email={email}")
     print(response.json())
 
     return render_template('students_view.html')
-
->>>>>>> f58cf2eee43ca5bc64903b99e5179b439995c409
 
 @blueprint.route('/programs_view')
 def return_programs():
