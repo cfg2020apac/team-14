@@ -92,12 +92,8 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-program-format">Program format</label>
-                    <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                    <select class="form-control" id="input-format" name=program_format>
-                      <option value="Face-to-face" selected>Face-to-face</option>
-                      <option value="Online">Online</option>
-                    </select>
+                    <label class="form-control-label" for="input-prograam-format">Program format</label>
+                    <input type="text" id="input-host" class="form-control" name="program_format" value="{{data.program_format}}">
                   </div>
                 </div>
                 <script>

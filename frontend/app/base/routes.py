@@ -166,7 +166,10 @@ def add_student():
         # url = 'http://requestbin.net/r/1l6imqw1'
         res = requests.post(url, data = request.form)
         # 200 means http ok
-        return redirect(url_for('base_blueprint.return_students'))
+        if res.status_code == 200:
+            return render_template('students_add.html', success=True)
+        else:
+            return render_template('students_add.html', error=True)
             
 
     return render_template('students_add.html')
@@ -196,7 +199,10 @@ def add_program():
         # url = 'http://requestbin.net/r/1l6imqw1'
         res = requests.post(url, data = request.form)
         # 200 means http ok
-        return redirect(url_for('base_blueprint.return_programs'))
+        if res.status_code == 200:
+            return render_template('programs_add.html', success=True)
+        else:
+            return render_template('programs_add.html', error=True)
             
 
     return render_template('programs_add.html')
@@ -207,7 +213,7 @@ def find_program(program_id):
     data = response.json()
     print(data)
     return render_template('programs_edit.html', data=data)
-    
+
 @blueprint.route('/volunteers_view', methods=['GET'])
 def volunteers_view():
     # column_names = ["age", "contact", "email", "first_name", "gender", "language", "last_name", "school"]

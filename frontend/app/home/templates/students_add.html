@@ -18,6 +18,16 @@
           <div class="row align-items-center">
             <div class="col-8">
               <h3 class="mb-0">Add student</h3>
+              {% if success is sameas true %}
+                <div class="alert alert-success" role="alert">
+                  Successfully added a new student! 🥳
+                </div>
+              {% endif %}
+              {% if error is sameas true %}
+                <div class="alert alert-danger" role="alert">
+                  You did not fill in one of the fields. Please try again. 😥
+                </div>
+              {% endif %}
             </div>
           </div>
         </div>
