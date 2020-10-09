@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
 
+import requests
+import os 
 from flask import jsonify, render_template, redirect, request, url_for
 from flask_login import (
     current_user,
@@ -19,8 +18,8 @@ from app.base.models import User
 from app.base.util import verify_pass
 
 @blueprint.route('/')
-def route_default():
-    return redirect(url_for('base_blueprint.login'))
+def main():
+    return render_template('main.html')
 
 ## Login & Registration
 
@@ -118,3 +117,20 @@ def not_found_error(error):
 @blueprint.errorhandler(500)
 def internal_error(error):
     return render_template('page-500.html'), 500
+
+### STRIKES TO RETURN DATA ###
+@blueprint.route('/students_view')
+def return_students():
+    response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
+    print(response.json())
+
+
+    return render_template('students_view.html', students=students)
+
+@blueprint.route('/students_add')
+def add_student():
+    response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
+    print(response.json())
+
+
+    return render_template('students_view.html', students=students)
