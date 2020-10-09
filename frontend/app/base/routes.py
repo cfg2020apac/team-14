@@ -129,9 +129,6 @@ def internal_error(error):
 ### STRIKES TO RETURN DATA ###
 @blueprint.route('/students_view')
 def return_students():
-    # column_names = ["age", "contact", "email", "first_name", "gender", "language", "last_name", "school"]
-    # df = pd.DataFrame(columns = column_names)
-    
     response = requests.get("http://danieltan.org:8080/students/all")
     
     data = response.json()
@@ -140,12 +137,12 @@ def return_students():
 
     return render_template('students_view.html', data=data)
 
-@blueprint.route('/students_add')
+@blueprint.route('/students_add', methods=["POST"])
 def add_student():
-    response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
-    print(response.json())
-
-    return render_template('students_view.html')
+    if request.method == "POST":
+        url = 'http://danieltan.org:8080/students/update'
+        res = requests.post(url, data=request.form)
+    render_template('students_view.html')
 
 @blueprint.route('/programs_view')
 def return_programs():
