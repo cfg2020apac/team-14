@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form action="{{url_for(add_program)}}", method="post">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
@@ -61,27 +61,27 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-school">Host name</label>
-                    <input type="text" id="input-school" class="form-control" placeholder="Host name">
+                    <label class="form-control-label" for="input-host">Host name</label>
+                    <input type="text" id="input-host" class="form-control" placeholder="Host name">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-age">Capacity</label>
-                    <input type="number" id="input-age" class="form-control" placeholder="16">
+                    <label class="form-control-label" for="input-ratio">Ratio</label>
+                    <input type="number" id="input-ratio" class="form-control" placeholder="0.5">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-language">Language</label>
-                    <input type="text" id="input-language" class="form-control" placeholder="Mandarin, Cantonese, English">
+                    <label class="form-control-label" for="input-capacity">Capacity</label>
+                    <input type="number" id="input-capacity" class="form-control" placeholder="60">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">Program format</label>
+                    <label class="form-control-label" for="input-prograam-format">Program format</label>
                     <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
                     <select class="form-control" id="input-type">
                       <option value="" selected>Face-to-face</option>

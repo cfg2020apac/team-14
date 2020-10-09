@@ -151,3 +151,18 @@ def return_programs():
         data = data[k]
 
     return render_template('programs_view.html', data=data)
+
+@blueprint.route('/programs_add', methods=["GET", "POST"])
+def add_program():
+
+    if request.method == "POST":
+        req = request.form
+        url = 'http://danieltan.org:8080/programs/update'
+        x = requests.post(url, data = req)
+        return redirect(url_for('return_programs'))
+
+    return render_template('programs_add.html')
+
+@blueprint.route('/programs_edit')
+def edit_program():
+    return render_template('programs_edit.html')
