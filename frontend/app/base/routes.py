@@ -88,6 +88,13 @@ def register():
     else:
         return render_template( 'accounts/register.html', form=create_account_form)
 
+@blueprint.route('/register/volunteers', methods=['GET', 'POST'])
+def register_volunteers():
+    login_form = LoginForm(request.form)
+    create_account_form = CreateAccountForm(request.form)
+    
+    return render_template( 'accounts/volunteers_register.html', form=create_account_form)
+
 @blueprint.route('/logout')
 def logout():
     logout_user()
