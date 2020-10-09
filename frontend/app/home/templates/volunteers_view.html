@@ -53,55 +53,57 @@
                   <th scope="col">Education Level</th> 
                   <th scope="col">Years of Working Experience</th> 
                   <th scope="col">Preferred Timing</th> 
-                  <th scope="col">Preferred Student Group</th> 
+                  <th scope="col">Preferred Student Group</th>
+                  <th></th>
 
                   <!-- for buttons -->
                 </tr>
               </thead>
               <tbody class="list">
                 <!-- TODO: pull from api -->
+                {%- for row in data -%}
                 <tr>
                   <th scope="row">
-                    Business
+                    {{ row.category }}
                   </th>
                   <td>
-                    John
+                    {{ row.first_name }}
                   </td>
                   <td>
-                    Doe
+                    {{ row.last_name }}
                   </td>
                   <td>
-                    9111 1123
+                    {{ row.contact_no }} 
                   </td>
                   <td>
-                    asd@email.com
+                    {{ row.email }} 
                   </td>
                   <td>
-                    21
+                    {{ row.age }} 
                   </td>
                   <td>
-                    Male
+                    {{ row.gender }} 
                   </td>
                   <td>
-                    English
+                    {{ row.language }} 
                   </td>
                   <td>
-                    Ace Ventura Pte Ltd
+                    {{ row.company }} 
                   </td>
                   <td>
-                    Salesman
+                    {{ row.position }} 
                   </td>
                   <td>
-                    Bachelors Degree  
+                    {{ row.education_level }} 
                   </td>
                   <td>
-                    5
+                    {{ row.age }} 
                   </td>
                   <td>
-                    10am - 6pm
+                    {{ row.preferred_timing }} 
                   </td>
                   <td>
-                    Children of under 12
+                    {{ row.preferred_student_group }} 
                   </td>
                   <td class="text-right">
                     <div class="dropdown">
@@ -109,13 +111,14 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="./volunteers_edit">Edit</a>
+                        <a class="dropdown-item" href="./volunteers_edit/{{ row.email }}">Edit</a>
                         <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
                       </div>
                     </div>
                   </td>
                 </tr>
+                {%- endfor %}
+
               </tbody>
             </table>
           </div>

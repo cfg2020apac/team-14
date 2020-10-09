@@ -17,24 +17,37 @@
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col-8">
-              <h3 class="mb-0">Edit volunteer</h3>
+              <h3 class="mb-0">Edit volunteer records</h3>
+              {% if success is sameas true %}
+                <div class="alert alert-success" role="alert">
+                  Successfully edited the volunteer's details! 🥳
+                </div>
+              {% endif %}
+              {% if error is sameas true %}
+                <div class="alert alert-danger" role="alert">
+                  You did not fill in one of the fields. Please try again. 😥
+                </div>
+              {% endif %}
             </div>
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form method="post">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-category">Category</label>
-                    <input type="text" id="input-first-name" class="form-control" placeholder="Category" value="Business">
+                    <select class="form-control" name="category">
+                      <option value="student">Student</option>
+                      <option value="business">Working Professional</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">First Name</label>
-                    <input type="text" id="input-last-name" class="form-control" placeholder="First Name" value="Jesse">
+                    <input class="form-control" placeholder="First name" name="first_name" type="text" value="{{ data.first_name }}">
                   </div>
                 </div>
               </div>
@@ -42,13 +55,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Last Name</label>
-                    <input type="email" id="input-email" class="form-control" placeholder="Last Name" value="Owens">
+                    <input class="form-control" placeholder="Last name" name="last_name" type="text" value="{{ data.last_name }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-contact-number">Contact number</label>
-                    <input type="tel" id="input-contact-number" class="form-control" placeholder="+852 1234 5678">
+                    <input class="form-control" placeholder="+852 1234 5678" name="contact_no" type="tel" value="{{ data.contact_no }}">
                   </div>
                 </div>
               </div>
@@ -56,13 +69,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Email</label>
-                    <input type="text" id="input-school" class="form-control" placeholder="Email">
+                    <input class="form-control" placeholder="Email" name="email" type="email" value="{{ data.email }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-age">Age</label>
-                    <input type="number" id="input-age" class="form-control" placeholder="16">
+                    <input class="form-control" placeholder="Age" name="age" type="number" value="{{ data.age }}">
                   </div>
                 </div>
               </div>
@@ -70,61 +83,75 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-gender">Gender</label>
-                    <input type="text" id="input-language" class="form-control" placeholder="Male">
+                    <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
+                    <select class="form-control" name="gender" id="input-type">
+                      <option value="male" selected>Male</option>
+                      <option value="female">Female</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-language">Language</label>
-                      <input type="text" id="input-language" class="form-control" placeholder="Mandarin">
-                    </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-language">Language</label>
+                    <input class="form-control" placeholder="Spoken languages" name="language" type="text" value="{{ data.language }}">
                   </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-company">Company</label>
-                    <input type="text" id="input-language" class="form-control" placeholder="Company">
+                    <input class="form-control" placeholder="Company" name="company" type="text" value="{{ data.company }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-position">Position</label>
-                      <input type="text" id="input-language" class="form-control" placeholder="Position">
-                    </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-position">Position</label>
+                    <input class="form-control" placeholder="Position" name="position" type="text" value="{{ data.position }}">
                   </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-education">Education</label>
-                    <input type="text" id="input-language" class="form-control" placeholder="Education">
-                  </div>
+                    <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
+                    <select class="form-control" name="education_level" id="input-type">
+                      <option value="primary" selected>Primary</option>
+                      <option value="secondary">Secondary</option>
+                      <option value="tertiary">Tertiary</option>
+                      <option value="bachelor's">Bachelor's Degree</option>
+                      <option value="masters">Masters Degree</option>
+                    </select> </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-experience">Experience</label>
-                      <input type="text" id="input-language" class="form-control" placeholder="Experience">
-                    </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-experience">Years of working experience</label>
+                    <input class="form-control" placeholder="e.g. 5" name="years_of_working_experience" type="number" value="{{ data.years_of_working_experience }}">
                   </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-timing">Preferred Timing</label>
-                    <input type="text" id="input-language" class="form-control" placeholder="Preferred Timing">
+                    <input class="form-control" placeholder="e.g. AM or PM" name="preferred_timing" type="text" value="{{ data.preferred_timing }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-student-group">Preferred Student Group</label>
-                      <input type="text" id="input-language" class="form-control" placeholder="Preferred Student Group">
-                    </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-student-group">Preferred Student Group</label>
+                    <select class="form-control" name="preferred_student_group" id="input-type">
+                      <option value="primary" selected>Primary</option>
+                      <option value="secondary">Secondary</option>
+                      <option value="tertiary">Tertiary</option>
+                    </select>
                   </div>
+                </div>
               </div>
             </div>
             <div class="pl-lg-4">
-              <button class="btn btn-success">Add</button>
+              <button class="btn btn-success">Edit</button>
             </div>
           </form>
         </div>
