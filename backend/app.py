@@ -274,6 +274,7 @@ def sendmail():
             subject = "JA Program Reminder"
             text = "This is a reminder that {} by {} will be happening tomorrow!".format(
                 name, host)
+            emailer.sendMessage(email, subject, text)
 
 
 def scheduler():
