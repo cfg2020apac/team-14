@@ -4,6 +4,8 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import *
 import json
 import os
 
@@ -126,6 +128,34 @@ class Program(db.Model):
         }
 
 
+class StudentLink(db.Model):
+    __tablename__ = "student_link"
+    student_id = db.Column(db.Integer, ForeignKey(
+        "student.student_id"), primary_key=True, nullable=False)
+    program_id = db.Column(db.Integer, ForeignKey(
+        "program.program_id"), primary_key=True, nullable=False)
+
+    def json(self):
+        return {
+            "student_id": self.student_id,
+            "program_id": self.program_id
+        }
+
+
+class VolunteerLink(db.Model):
+    __tablename__ = "volunteer_link"
+    volunteer_id = db.Column(db.Integer, ForeignKey(
+        "volunteer.volunteer_id"), primary_key=True, nullable=False)
+    program_id = db.Column(db.Integer, ForeignKey(
+        "program.program_id"), primary_key=True, nullable=False)
+
+    def json(self):
+        return {
+            "volunteer_id": self.volunteer_id,
+            "program_id": self.program_id
+        }
+
+
 engine = create_engine(dbURL)
 if not database_exists(engine.url):
     create_database(engine.url)
@@ -210,6 +240,19 @@ def new_program():
     db.session.merge(Program(**data))
     db.session.commit()
     return "OK", 200
+
+
+@app.route("/programs/attendees", methods=['GET'])
+def get_attendees_by_id():
+    program_id = request.args.get('program_id')
+    students = [student.json() for student in StudentLink.query.filter_by(
+        program_id=program_id).all()]
+    volunteers = [volunteer.json() for volunteer in VolunteerLink.query.filter_by(
+        program_id=program_id).all()]
+    return {
+        'students': students,
+        'volunteers': volunteers,
+    }
 
 
 if __name__ == '__main__':
