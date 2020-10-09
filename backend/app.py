@@ -57,6 +57,12 @@ class Student(db.Model):
             'language': self.language
         }
 
+@event.listens_for(Student.__table__, 'after_create')
+def create_students(*args, **kwargs):
+    db.session.add(Student(email='abc@xyz.gmail.com', first_name='test first name', last_name="test last name", contact_no="12345678", school="HKU", age=21, gender="Male",language="Cantonese"))
+    db.session.add(Student(email='bla@bla.yahoo.com', first_name='test 1', last_name="test 2", contact_no="12345678", school="CUHK", age=23, gender="Male", language="Cantonese, English"))
+    db.session.commit()
+
 
 class Volunteer(db.Model):
     __tablename__ = 'volunteer'
