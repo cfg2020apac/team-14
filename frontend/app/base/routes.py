@@ -122,6 +122,12 @@ def shutdown():
     func()
     return 'Server shutting down...'
 
+# GET
+@blueprint.route('/feedback', methods=['GET'])
+def feedback():
+
+    return render_template('feedback.html')
+
 ## Errors
 
 @login_manager.unauthorized_handler

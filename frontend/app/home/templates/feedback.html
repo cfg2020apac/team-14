@@ -1,0 +1,116 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %} Volunteers Register {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary border-0">
+        <div class="card-body px-lg-5 py-lg-5">
+          <h2>Feedback Form</h2>
+          {% if error is sameas true %}
+            <div class="alert alert-danger" role="alert">
+              You did not fill in one of the fields. Please try again. 😥
+            </div>
+          {% endif %}
+          <!-- <form role="form" id="form" method="post"> -->
+            <div class="form-group">
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">First name</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="First name" name="first_name" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Last name</label>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Last name" name="last_name" type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-control-label">Email</label>
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Email" name="email" type="email">
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Message</label>
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></i></span>
+                  </div>
+                  <textarea rows="5" cols="80" id="TITLE">
+                </textarea>                
+                </div>
+              </div>
+
+            <div class="text-center">
+              <button class="btn btn-primary mt-4" id="feedback">Submit Feedback</button>
+            </div>
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+<script type="text/javascript">
+  $(document).ready(function () {
+    console.log("ok");
+    $('#signup').on('click', function () {
+      var $inputs = $('#form :input');
+      var values = {};
+      $inputs.each(function () {
+        values[this.name] = $(this).val();
+      });
+      console.log(values);
+
+      // $.ajax({
+      //   url: "http://danieltan.org:8080/volunteers/update",
+      //   type: "POST",
+      //   contentType: "application/x-www-form-urlencoded", // send as JSON
+      //   data: values,
+
+      //   success: function () {
+      //     //called when successful
+      //     console.log("success");
+      //   },
+
+      //   error: function (e) {
+      //     //called when there is an error
+      //     console.error("error", e);
+      //   },
+      // });
+    });
+  });
+</script>
+{% endblock javascripts %}
