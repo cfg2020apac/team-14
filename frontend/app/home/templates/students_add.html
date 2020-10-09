@@ -22,19 +22,19 @@
           </div>
         </div>
         <div class="card-body">
-          <form method="post">
+          <form action="{{url_for('base_blueprint.add_student')}}", method="post">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">First name</label>
-                    <input type="text" id="input-first-name" class="form-control" name="first_name" placeholder="First name" value="Lucky">
+                    <input type="text" id="input-first-name" class="form-control" name="first_name" placeholder="First name">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Last name</label>
-                    <input type="text" id="input-last-name" class="form-control" name="last_name" placeholder="Last name" value="Jesse">
+                    <input type="text" id="input-last-name" class="form-control" name="last_name" placeholder="Last name">
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Email address</label>
-                    <input type="email" id="input-email" class="form-control" name="email">
+                    <input type="email" id="input-email" class="form-control" name="email" placeholder="abc@xyz.com">
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -67,6 +67,16 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-age">Gender</label>
+                    <select class="form-control" id="input-gender" name="gender">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Preferred not to say">Preferred not to say</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-language">Language</label>
