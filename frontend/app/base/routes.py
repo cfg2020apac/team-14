@@ -156,7 +156,8 @@ def add_student():
     if request.method == "POST":
         url = 'http://danieltan.org:8080/students/update'
         res = requests.post(url, data=request.form)
-    render_template('students_view.html')
+
+    return render_template('student_view.html', error=True)
 
 @blueprint.route('/programs_view')
 def return_programs():
