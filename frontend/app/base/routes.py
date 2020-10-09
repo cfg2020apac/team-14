@@ -198,6 +198,7 @@ def add_program():
         url = 'http://danieltan.org:8080/programs/update'
         # url = 'http://requestbin.net/r/1l6imqw1'
         res = requests.post(url, data = request.form)
+        print(request.form)
         # 200 means http ok
         if res.status_code == 200:
             return render_template('programs_add.html', success=True)

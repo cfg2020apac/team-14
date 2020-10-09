@@ -92,21 +92,10 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-prograam-format">Program format</label>
-                    <input type="text" id="input-host" class="form-control" name="program_format" value="{{data.program_format}}">
+                    <label class="form-control-label" for="input-prograam-format">Venue</label>
+                    <input type="text" id="input-host" class="form-control" name="venue" value="{{data.venue}}">
                   </div>
                 </div>
-                <script>
-                  var temp = "{{data.venue}}";
-                  var mySelect = document.getElementById('input-format');
-                  
-                  for(var i, j = 0; i = mySelect.options[j]; j++) {
-                      if(i.value == temp) {
-                          mySelect.selectedIndex = j;
-                          break;
-                      }
-                  }
-                </script>
               </div>
               <input type="hidden" id="program_id" name="program_id" value="{{data.program_id}}">
             </div>
