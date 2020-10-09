@@ -252,25 +252,29 @@ def return_dashboard_count():
     response = requests.get("http://danieltan.org:8080/students/all")
 
     data_list = []
+
+    data = response.json()
+    for k in data:
+        data = data[k]
+
     data_list.append(len(data))
 
     response = requests.get("http://danieltan.org:8080/programs/all")
-    
+
     data = response.json()
     for k in data:
         data = data[k]
-    
+
     data_list.append(len(data))
 
     response = requests.get("http://danieltan.org:8080/volunteers/all")
-    
+
     data = response.json()
     for k in data:
         data = data[k]
-    
+
     data_list.append(len(data))
 
     print(data_list)
 
-    return render_template('index.html', data=data_list)
-
+    return render_template('index.html', data=data_list) 
