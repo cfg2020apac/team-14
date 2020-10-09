@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from sqlalchemy import create_engine
+from sqlalchemy import *
 from sqlalchemy_utils import database_exists, create_database
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import *
 import json
 
 app = Flask(__name__)
@@ -193,6 +195,15 @@ def newprogram():
     db.session.commit()
     return "OK", 200
 
+@app.route("/programs/attendees", methods=['GET'])
+def get_attendees_by_id():
+    program_id = request.args.get('program_id')
+    students = StudentLink.query.filter_by(program_id=program_id).all().json()
+    volunteers = VolunteerLink.query.filter_by(program_id=program_id).all().json()
+    return {
+        'students': students,
+        'volunteers': volunteers,
+    }
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, threaded=True)
