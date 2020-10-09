@@ -15,7 +15,12 @@
       <div class="card bg-secondary border-0">
         <div class="card-body px-lg-5 py-lg-5">
           <h2>Volunteers registration</h2>
-          <form role="form">
+          {% if error is sameas true %}
+            <div class="alert alert-danger" role="alert">
+              You did not fill in one of the fields. Please try again. 😥
+            </div>
+          {% endif %}
+          <form role="form" id="form" method="post">
             <div class="form-group">
               <label class="form-control-label">Are you a...</label>
               <div class="input-group input-group-merge input-group-alternative mb-3">
@@ -155,11 +160,11 @@
                 </div>
                 <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
                 <select class="form-control" name="education_level" id="input-type">
-                  <option value="Primary" selected>Primary</option>
-                  <option value="Secondary">Secondary</option>
-                  <option value="Tertiary">Tertiary</option>
-                  <option value="Bachelor's">Bachelor's Degree</option>
-                  <option value="Masters">Masters Degree</option>
+                  <option value="primary" selected>Primary</option>
+                  <option value="secondary">Secondary</option>
+                  <option value="tertiary">Tertiary</option>
+                  <option value="bachelor's">Bachelor's Degree</option>
+                  <option value="masters">Masters Degree</option>
                 </select>
               </div>
             </div>
@@ -193,7 +198,7 @@
               </div>
             </div>
             <div class="text-center">
-              <button type="button" class="btn btn-primary mt-4">Sign me up!</button>
+              <button type="submit" class="btn btn-primary mt-4" id="signup">Sign me up!</button>
             </div>
           </form>
         </div>
@@ -205,4 +210,35 @@
 {% endblock content %}
 
 <!-- Specific JS goes HERE -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script type="text/javascript">
+  $(document).ready(function () {
+    console.log("ok");
+    $('#signup').on('click', function () {
+      var $inputs = $('#form :input');
+      var values = {};
+      $inputs.each(function () {
+        values[this.name] = $(this).val();
+      });
+      console.log(values);
+
+      // $.ajax({
+      //   url: "http://danieltan.org:8080/volunteers/update",
+      //   type: "POST",
+      //   contentType: "application/x-www-form-urlencoded", // send as JSON
+      //   data: values,
+
+      //   success: function () {
+      //     //called when successful
+      //     console.log("success");
+      //   },
+
+      //   error: function (e) {
+      //     //called when there is an error
+      //     console.error("error", e);
+      //   },
+      // });
+    });
+  });
+</script>
+{% endblock javascripts %}

@@ -1,0 +1,59 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %} Volunteers Register Success {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary border-0">
+        <div class="card-body px-lg-5 py-lg-5">
+          <h2>Volunteers registration successful!</h2>
+          Thank you for registering your interest with us. We'll get back to you the soonest possible. 😃
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+<script type="text/javascript">
+  $(document).ready(function () {
+    console.log("ok");
+    $('#signup').on('click', function () {
+      var $inputs = $('#form :input');
+      var values = {};
+      $inputs.each(function () {
+        values[this.name] = $(this).val();
+      });
+      console.log(values);
+
+      // $.ajax({
+      //   url: "http://danieltan.org:8080/volunteers/update",
+      //   type: "POST",
+      //   contentType: "application/x-www-form-urlencoded", // send as JSON
+      //   data: values,
+
+      //   success: function () {
+      //     //called when successful
+      //     console.log("success");
+      //   },
+
+      //   error: function (e) {
+      //     //called when there is an error
+      //     console.error("error", e);
+      //   },
+      // });
+    });
+  });
+</script>
+{% endblock javascripts %}
