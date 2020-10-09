@@ -4,8 +4,8 @@
 
 {% block content %}
 
-<div class="header pb-6 d-flex align-items-center" 
-     style="min-height: 200px; background-image: url(/static/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+<div class="header pb-6 d-flex align-items-center"
+  style="min-height: 200px; background-image: url(/static/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
   <!-- Mask -->
   <span class="mask bg-gradient-default opacity-8"></span>
 </div>
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form action="{{url_for('base_blueprint.add_program')}}", method="post">
+          <form action="{{url_for('base_blueprint.add_program')}}" , method="post">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
@@ -81,9 +81,9 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-prograam-format">Program format</label>
+                    <label class="form-control-label" for="input-prograam-format">Venue</label>
                     <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                    <select class="form-control" id="input-type" name="program_format">
+                    <select class="form-control" id="input-type" name="venue">
                       <option value="Face-to-face" selected>Face-to-face</option>
                       <option value="Online">Online</option>
                     </select>
@@ -106,5 +106,5 @@
 
 {% endblock content %}
 
-<!-- Specific JS goes HERE --> 
+<!-- Specific JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}

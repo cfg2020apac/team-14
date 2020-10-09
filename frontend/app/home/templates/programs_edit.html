@@ -94,14 +94,14 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-program-format">Program format</label>
                     <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                    <select class="form-control" id="input-format" name=program_format>
+                    <select class="form-control" id="input-format" name=venue>
                       <option value="Face-to-face" selected>Face-to-face</option>
                       <option value="Online">Online</option>
                     </select>
                   </div>
                 </div>
                 <script>
-                  var temp = "{{data.program_format}}";
+                  var temp = "{{data.venue}}";
                   var mySelect = document.getElementById('input-format');
                   
                   for(var i, j = 0; i = mySelect.options[j]; j++) {
