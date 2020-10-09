@@ -40,7 +40,7 @@ def login():
         if user and verify_pass( password, user.password):
 
             login_user(user)
-            return redirect(url_for('base_blueprint.login   '))
+            return redirect(url_for('base_blueprint.login'))
 
         # Something (user or pass) is not ok
         return render_template( 'accounts/login.html', msg='Wrong user or password', form=login_form)
@@ -153,16 +153,25 @@ def return_students():
 
 @blueprint.route('/students_add', methods=["POST"])
 def add_student():
+<<<<<<< HEAD
     if request.method == "POST":
         url = 'http://danieltan.org:8080/students/update'
         res = requests.post(url, data=request.form)
 
     return render_template('student_view.html', error=True)
+=======
+    response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
+    print(response.json())
+
+    return render_template('students_view.html')
+
+>>>>>>> f58cf2eee43ca5bc64903b99e5179b439995c409
 
 @blueprint.route('/programs_view')
 def return_programs():
     response = requests.get("http://danieltan.org:8080/programs/all")
     data = response.json()
+    print(data)
     for k in data:
         data = data[k]
 
@@ -172,13 +181,12 @@ def return_programs():
 def add_program():
 
     if request.method == "POST":
-        req = request.form
+        print(request.form)
         url = 'http://danieltan.org:8080/programs/update'
-        x = requests.post(url, data = req)
-        return redirect(url_for('return_programs'))
+        # url = 'http://requestbin.net/r/1l6imqw1'
+        res = requests.post(url, data = request.form)
+        # 200 means http ok
+        return redirect(url_for('base_blueprint.return_programs'))
+            
 
     return render_template('programs_add.html')
-
-@blueprint.route('/programs_edit')
-def edit_program():
-    return render_template('programs_edit.html')
