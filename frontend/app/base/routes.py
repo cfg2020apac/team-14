@@ -143,9 +143,6 @@ def internal_error(error):
 ### STRIKES TO RETURN DATA ###
 @blueprint.route('/students_view')
 def return_students():
-    # column_names = ["age", "contact", "email", "first_name", "gender", "language", "last_name", "school"]
-    # df = pd.DataFrame(columns = column_names)
-    
     response = requests.get("http://danieltan.org:8080/students/all")
     
     data = response.json()
@@ -154,13 +151,27 @@ def return_students():
 
     return render_template('students_view.html', data=data)
 
-@blueprint.route('/students_add')
+@blueprint.route('/students_add', methods=["GET", "POST"])
 def add_student():
-    response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
-    print(response.json())
+
+    if request.method == "POST":
+        print(request.form)
+        url = 'http://danieltan.org:8080/students/update'
+        # url = 'http://requestbin.net/r/1l6imqw1'
+        res = requests.post(url, data = request.form)
+        # 200 means http ok
+        return redirect(url_for('base_blueprint.return_students'))
+            
 
     return render_template('students_view.html')
 
+@blueprint.route('/students_edit/<email>')
+def find_student(email):
+    response = requests.get("http://danieltan.org:8080/students/find?email=" + email)
+    print(response.json())
+    data = response.json()
+
+    return render_template('students_edit.html', data=data)
 
 @blueprint.route('/programs_view')
 def return_programs():
@@ -192,7 +203,7 @@ def volunteers_view():
     # df = pd.DataFrame(columns = column_names)
     
     response = requests.get("http://danieltan.org:8080/volunteers/all")
-    
+
     data = response.json()
     for k in data:
         data = data[k]
@@ -235,3 +246,31 @@ def volunteers_edit_post(email):
         return render_template('volunteers_add.html')
     else:
         return render_template('volunteers_add.html')
+
+@blueprint.route('/index')
+def return_dashboard_count():
+    response = requests.get("http://danieltan.org:8080/students/all")
+
+    data_list = []
+    data_list.append(len(data))
+
+    response = requests.get("http://danieltan.org:8080/programs/all")
+    
+    data = response.json()
+    for k in data:
+        data = data[k]
+    
+    data_list.append(len(data))
+
+    response = requests.get("http://danieltan.org:8080/volunteers/all")
+    
+    data = response.json()
+    for k in data:
+        data = data[k]
+    
+    data_list.append(len(data))
+
+    print(data_list)
+
+    return render_template('index.html', data=data_list)
+
