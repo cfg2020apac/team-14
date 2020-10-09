@@ -198,3 +198,29 @@ def volunteers_view():
         data = data[k]
 
     return render_template('volunteers_view.html', data=data)
+
+# POST
+@blueprint.route('/volunteers_add', methods=['POST'])
+def volunteers_add():
+    url = 'http://danieltan.org:8080/volunteers/update'
+    res = requests.post(url, data=request.form)
+
+    print(res)
+    # 200 means http ok
+    if res.status_code == 200:
+        return render_template('volunteers_add.html', success=True)
+    else:
+        return render_template('volunteers_add.html', error=True)
+
+# POST
+@blueprint.route('/volunteers_edit/<string:id>', methods=['GET'])
+def volunteers_edit(id):
+    url = 'http://danieltan.org:8080/volunteers/update'
+    res = requests.post(url, data=request.form)
+
+    print(res)
+    # 200 means http ok
+    if res.status_code == 200:
+        return render_template('volunteers_add.html', success=True)
+    else:
+        return render_template('volunteers_add.html', error=True)
