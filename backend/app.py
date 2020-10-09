@@ -196,12 +196,6 @@ def new_student():
     db.session.commit()
     return "OK", 200
 
-@app.route("/students/register", methods=['POST'])
-def register_student():
-    data = request.form.to_dict()
-    db.session.merge(Student(**data))
-    db.session.commit()
-    return "OK", 200
 
 @app.route("/volunteers/all", methods=['GET'])
 def get_all_volunteers():
@@ -221,12 +215,6 @@ def new_volunteer():
     db.session.commit()
     return "OK", 200
 
-@app.route("/volunteers/register", methods=['POST'])
-def register_volunteer():
-    data = request.form.to_dict()
-    db.session.merge(Volunteer(**data))
-    db.session.commit()
-    return "OK", 200
 
 @app.route("/programs/all", methods=['GET'])
 def get_all_programs():
