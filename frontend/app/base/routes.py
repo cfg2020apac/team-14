@@ -99,7 +99,7 @@ def register_volunteers():
 # POST
 @blueprint.route('/register/volunteers', methods=['POST'])
 def register_volunteers_post():
-    url = 'http://danieltan.org:8080/volunteers/update'
+    url = 'http://localhost:8080/volunteers/update'
     res = requests.post(url, data=request.form)
 
     print(res)
@@ -149,7 +149,7 @@ def internal_error(error):
 ### STRIKES TO RETURN DATA ###
 @blueprint.route('/students_view')
 def return_students():
-    response = requests.get("http://danieltan.org:8080/students/all")
+    response = requests.get("http://localhost:8080/students/all")
     
     data = response.json()
     for k in data:
@@ -162,7 +162,7 @@ def add_student():
 
     if request.method == "POST":
         print(request.form)
-        url = 'http://danieltan.org:8080/students/update'
+        url = 'http://localhost:8080/students/update'
         # url = 'http://requestbin.net/r/1l6imqw1'
         res = requests.post(url, data = request.form)
         # 200 means http ok
@@ -176,14 +176,14 @@ def add_student():
 
 @blueprint.route('/students_edit/<email>')
 def find_student(email):
-    response = requests.get("http://danieltan.org:8080/students/find?email=" + email)
+    response = requests.get("http://localhost:8080/students/find?email=" + email)
     data = response.json()
 
     return render_template('students_edit.html', data=data)
 
 @blueprint.route('/programs_view')
 def return_programs():
-    response = requests.get("http://danieltan.org:8080/programs/all")
+    response = requests.get("http://localhost:8080/programs/all")
     data = response.json()
     for k in data:
         data = data[k]
@@ -195,7 +195,7 @@ def return_programs():
 def add_program():
 
     if request.method == "POST":
-        url = 'http://danieltan.org:8080/programs/update'
+        url = 'http://localhost:8080/programs/update'
         # url = 'http://requestbin.net/r/1l6imqw1'
         res = requests.post(url, data = request.form)
         print(request.form)
@@ -210,7 +210,7 @@ def add_program():
 
 @blueprint.route('/programs_edit/<program_id>')
 def find_program(program_id):
-    response = requests.get("http://danieltan.org:8080/programs/find?program_id=" + program_id)
+    response = requests.get("http://localhost:8080/programs/find?program_id=" + program_id)
     data = response.json()
     print(data)
     return render_template('programs_edit.html', data=data)
@@ -220,7 +220,7 @@ def volunteers_view():
     # column_names = ["age", "contact", "email", "first_name", "gender", "language", "last_name", "school"]
     # df = pd.DataFrame(columns = column_names)
     
-    response = requests.get("http://danieltan.org:8080/volunteers/all")
+    response = requests.get("http://localhost:8080/volunteers/all")
 
     data = response.json()
     for k in data:
@@ -231,7 +231,7 @@ def volunteers_view():
 # POST
 @blueprint.route('/volunteers_add', methods=['POST'])
 def volunteers_add():
-    url = 'http://danieltan.org:8080/volunteers/update'
+    url = 'http://localhost:8080/volunteers/update'
     res = requests.post(url, data=request.form)
 
     print(res)
@@ -243,7 +243,7 @@ def volunteers_add():
 
 @blueprint.route('/volunteers_edit/<string:email>', methods=['GET'])
 def volunteers_edit(email):
-    url = 'http://danieltan.org:8080/volunteers/find?email=' + email
+    url = 'http://localhost:8080/volunteers/find?email=' + email
     res = requests.get(url)
 
     # 200 means http ok
@@ -255,7 +255,7 @@ def volunteers_edit(email):
 
 @blueprint.route('/volunteers_edit/<string:email>', methods=['POST'])
 def volunteers_edit_post(email):
-    url = 'http://danieltan.org:8080/volunteers/update'
+    url = 'http://localhost:8080/volunteers/update'
     res = requests.post(url, data=request.form)
 
     print(res)
@@ -267,7 +267,7 @@ def volunteers_edit_post(email):
 
 @blueprint.route('/index')
 def return_dashboard_count():
-    response = requests.get("http://danieltan.org:8080/students/all")
+    response = requests.get("http://localhost:8080/students/all")
 
     data_list = []
 
@@ -277,7 +277,7 @@ def return_dashboard_count():
 
     data_list.append(len(data))
 
-    response = requests.get("http://danieltan.org:8080/programs/all")
+    response = requests.get("http://localhost:8080/programs/all")
 
     data = response.json()
     for k in data:
@@ -285,7 +285,7 @@ def return_dashboard_count():
 
     data_list.append(len(data))
 
-    response = requests.get("http://danieltan.org:8080/volunteers/all")
+    response = requests.get("http://localhost:8080/volunteers/all")
 
     data = response.json()
     for k in data:
