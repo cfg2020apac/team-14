@@ -69,6 +69,27 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
+                    <label class="form-control-label" for="input-age">Gender</label>
+                    <select class="form-control" id="input-gender" name="gender">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Preferred not to say">Preferred not to say</option>
+                    </select>
+                  </div>
+                </div>
+                <script>
+                  var temp = "{{data.gender}}";
+                  var mySelect = document.getElementById('input-gender');
+                  
+                  for(var i, j = 0; i = mySelect.options[j]; j++) {
+                      if(i.value == temp) {
+                          mySelect.selectedIndex = j;
+                          break;
+                      }
+                  }
+                </script>
+                <div class="col-lg-6">
+                  <div class="form-group">
                     <label class="form-control-label" for="input-language">Language</label>
                     <input type="text" id="input-language" class="form-control" name="language" value="{{data.language}}">
                   </div>

@@ -163,12 +163,11 @@ def add_student():
         return redirect(url_for('base_blueprint.return_students'))
             
 
-    return render_template('students_view.html')
+    return render_template('students_add.html')
 
 @blueprint.route('/students_edit/<email>')
 def find_student(email):
     response = requests.get("http://danieltan.org:8080/students/find?email=" + email)
-    print(response.json())
     data = response.json()
 
     return render_template('students_edit.html', data=data)
@@ -177,9 +176,9 @@ def find_student(email):
 def return_programs():
     response = requests.get("http://danieltan.org:8080/programs/all")
     data = response.json()
-    print(data)
     for k in data:
         data = data[k]
+    print(data)
 
     return render_template('programs_view.html', data=data)
 
@@ -187,7 +186,6 @@ def return_programs():
 def add_program():
 
     if request.method == "POST":
-        print(request.form)
         url = 'http://danieltan.org:8080/programs/update'
         # url = 'http://requestbin.net/r/1l6imqw1'
         res = requests.post(url, data = request.form)
@@ -196,3 +194,10 @@ def add_program():
             
 
     return render_template('programs_add.html')
+
+@blueprint.route('/programs_edit/<program_id>')
+def find_program(program_id):
+    response = requests.get("http://danieltan.org:8080/programs/find?program_id=" + program_id)
+    data = response.json()
+    print(data)
+    return render_template('programs_edit.html', data=data)

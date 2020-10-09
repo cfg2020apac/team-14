@@ -22,25 +22,36 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form action="{{url_for('base_blueprint.add_program')}}", method="post">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Type</label>
                     <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                    <select class="form-control" id="input-type">
-                      <option value="">Primary</option>
-                      <option value="">Secondary</option>
-                      <option value="">Tertiary</option>
-                      <option value="">Special Events</option>
+                    <select class="form-control" id="input-type" name=program_type>
+                      <option value="Primary">Primary</option>
+                      <option value="Secondary">Secondary</option>
+                      <option value="Tertiary">Tertiary</option>
+                      <option value="Special Events">Special Events</option>
                     </select>
                   </div>
                 </div>
+                <script>
+                  var temp = "{{data.program_type}}";
+                  var mySelect = document.getElementById('input-type');
+                  
+                  for(var i, j = 0; i = mySelect.options[j]; j++) {
+                      if(i.value == temp) {
+                          mySelect.selectedIndex = j;
+                          break;
+                      }
+                  }
+                </script>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-program-name">Program name</label>
-                    <input type="text" id="input-program-name" class="form-control" placeholder="JA Finance for Future">
+                    <input type="text" id="input-program-name" class="form-control" name=name value="{{data.name}}">
                   </div>
                 </div>
               </div>
@@ -48,13 +59,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-start-date">Start date</label>
-                    <input type="text" id="input-start-date" class="form-control">
+                    <input type="date" id="input-start-date" class="form-control" name=start_date value="{{data.start_date.split(' ')[0]}}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-end-date">End date</label>
-                    <input type="text" id="input-end-date" class="form-control">
+                    <input type="date" id="input-end-date" class="form-control" name=end_date value="{{data.end_date.split(' ')[0]}}">
                   </div>
                 </div>
               </div>
@@ -62,13 +73,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-host">Host name</label>
-                    <input type="text" id="input-host" class="form-control" placeholder="Host name">
+                    <input type="text" id="input-host" class="form-control" name=host value="{{data.host}}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-ratio">Ratio</label>
-                    <input type="number" id="input-ratio" class="form-control" placeholder="0.5">
+                    <input type="number" id="input-ratio" class="form-control" name=ratio value="{{data.ratio}}">
                   </div>
                 </div>
               </div>
@@ -76,20 +87,32 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-capacity">Capacity</label>
-                    <input type="number" id="input-capacity" class="form-control" placeholder="60">
+                    <input type="number" id="input-capacity" class="form-control" name=capacity value="{{data.capacity}}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-program-format">Program format</label>
                     <!-- Have to make sure api accept only specific values, in case people inspect element & add arbitrary values -->
-                    <select class="form-control" id="input-type">
-                      <option value="" selected>Face-to-face</option>
-                      <option value="">Online</option>
+                    <select class="form-control" id="input-format" name=program_format>
+                      <option value="Face-to-face" selected>Face-to-face</option>
+                      <option value="Online">Online</option>
                     </select>
                   </div>
                 </div>
+                <script>
+                  var temp = "{{data.program_format}}";
+                  var mySelect = document.getElementById('input-format');
+                  
+                  for(var i, j = 0; i = mySelect.options[j]; j++) {
+                      if(i.value == temp) {
+                          mySelect.selectedIndex = j;
+                          break;
+                      }
+                  }
+                </script>
               </div>
+              <input type="hidden" id="program_id" name="program_id" value="{{data.program_id}}">
             </div>
             <div class="pl-lg-4">
               <button class="btn btn-success">Edit</button>

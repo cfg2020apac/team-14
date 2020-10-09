@@ -66,10 +66,10 @@
                     {{el.name}}
                   </td>
                   <td>
-                    {{el.start_date}}
+                    {{el.start_date.split(" ")[0]}}
                   </td>
                   <td>
-                    {{el.end_date}}
+                    {{el.end_date.split(" ")[0]}}
                   </td>
                   <td>
                     {{el.host}}
@@ -89,7 +89,7 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="./programs_edit">Edit</a>
+                        <a class="dropdown-item" href="./programs_edit/{{el.program_id}}">Edit</a>
                         <a class="dropdown-item" href="#">Delete</a>
                       </div>
                     </div>
