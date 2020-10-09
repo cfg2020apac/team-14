@@ -18,7 +18,7 @@ from app.base.models import User
 from app.base.util import verify_pass
 
 @blueprint.route('/')
-def main():
+def route_default():
     return render_template('main.html')
 
 ## Login & Registration
