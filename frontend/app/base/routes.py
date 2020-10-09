@@ -10,7 +10,6 @@ from flask_login import (
     login_user,
     logout_user
 )
-import pandas as pd
 from app import db, login_manager
 from app.base import blueprint
 from app.base.forms import LoginForm, CreateAccountForm
