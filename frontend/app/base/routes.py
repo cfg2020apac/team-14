@@ -9,7 +9,6 @@ from flask_login import (
     login_user,
     logout_user
 )
-import pandas as pd
 from app import db, login_manager
 from app.base import blueprint
 from app.base.forms import LoginForm, CreateAccountForm
@@ -147,20 +146,12 @@ def add_student():
 
     return render_template('students_view.html')
 
-@blueprint.route('/programs_view')
-def return_programs():
-    response = requests.get("http://danieltan.org:8080/programs/all")
-    data = response.json()
-    for k in data:
-        data = data[k]
-
-    return render_template('students_view.html')
-
 
 @blueprint.route('/programs_view')
 def return_programs():
     response = requests.get("http://danieltan.org:8080/programs/all")
     data = response.json()
+    print(data)
     for k in data:
         data = data[k]
 
@@ -170,13 +161,12 @@ def return_programs():
 def add_program():
 
     if request.method == "POST":
-        req = request.form
+        print(request.form)
         url = 'http://danieltan.org:8080/programs/update'
-        x = requests.post(url, data = req)
-        return redirect(url_for('return_programs'))
+        # url = 'http://requestbin.net/r/1l6imqw1'
+        res = requests.post(url, data = request.form)
+        # 200 means http ok
+        return redirect(url_for('base_blueprint.return_programs'))
+            
 
     return render_template('programs_add.html')
-
-@blueprint.route('/programs_edit')
-def edit_program():
-    return render_template('programs_edit.html')
