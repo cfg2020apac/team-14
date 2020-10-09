@@ -151,20 +151,27 @@ def return_students():
 
     return render_template('students_view.html', data=data)
 
-@blueprint.route('/students_add', methods=["POST"])
+@blueprint.route('/students_add', methods=["GET", "POST"])
 def add_student():
-    if request.method == "POST":
-        url = 'http://danieltan.org:8080/students/update'
-        res = requests.post(url, data=request.form)
 
-    return render_template('student_view.html', error=True)
+    if request.method == "POST":
+        print(request.form)
+        url = 'http://danieltan.org:8080/students/update'
+        # url = 'http://requestbin.net/r/1l6imqw1'
+        res = requests.post(url, data = request.form)
+        # 200 means http ok
+        return redirect(url_for('base_blueprint.return_students'))
+            
+
+    return render_template('students_view.html')
 
 @blueprint.route('/students_edit/<email>')
 def find_student(email):
-    response = requests.get("http://danieltan.org:8080/students/find?student_email={email}")
+    response = requests.get("http://danieltan.org:8080/students/find?email=" + email)
     print(response.json())
+    data = response.json()
 
-    return render_template('students_view.html')
+    return render_template('students_edit.html', data=data)
 
 @blueprint.route('/programs_view')
 def return_programs():
