@@ -18,7 +18,7 @@ from app.base.models import User
 from app.base.util import verify_pass
 
 @blueprint.route('/')
-def main():
+def route_default():
     return render_template('main.html')
 
 ## Login & Registration
@@ -39,7 +39,7 @@ def login():
         if user and verify_pass( password, user.password):
 
             login_user(user)
-            return redirect(url_for('base_blueprint.route_default'))
+            return redirect(url_for('base_blueprint.login'))
 
         # Something (user or pass) is not ok
         return render_template( 'accounts/login.html', msg='Wrong user or password', form=login_form)
@@ -132,7 +132,7 @@ def return_students():
     print(response.json())
 
 
-    return render_template('students_view.html', students=students)
+    return render_template('students_view.html')
 
 @blueprint.route('/students_add')
 def add_student():
@@ -140,4 +140,4 @@ def add_student():
     print(response.json())
 
 
-    return render_template('students_view.html', students=students)
+    return render_template('students_view.html')
